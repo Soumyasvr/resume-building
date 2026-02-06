@@ -3,8 +3,8 @@ import React from 'react'
 
 const PersonalInfoForm = ({data, onChange, removeBackground, setRemoveBackground}) => {
   
-    const handleChange = (filed, value) => {
-        onChange({...data, [filed]: value})
+    const handleChange = (field, value) => {
+        onChange({...data, [field]: value})
     }
 
     const fields = [
