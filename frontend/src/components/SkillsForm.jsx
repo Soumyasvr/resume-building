@@ -6,8 +6,8 @@ const SkillsForm = ({data, onChange}) => {
     const [newSkill, setNewSkill] = useState("")
 
     const addSkill = () => {
-        if(newSkill.trim() && !Database.includes(newSkill.trim())){
-            onChange([...data,newSkill.trim()])
+        if(newSkill.trim() && !data.includes(newSkill.trim())){
+            onChange([...data,newSkill.trim()]);
             setNewSkill("")
         }
     }
@@ -36,6 +36,7 @@ const SkillsForm = ({data, onChange}) => {
                 placeholder='Enter a skill (e.g., JavaScript, Project Management'
                 className='flex-1 px-3 py-2 text-sm'
                 onChange={(e) => setNewSkill(e.target.value)}
+                value={newSkill}
                 onKeyDown={handleKeyPress}
             />
             <button onClick={addSkill} disabled={!newSkill.trim} className='flex items-center gap-2 px-4 py-2 text-sm bg-blue-600 
