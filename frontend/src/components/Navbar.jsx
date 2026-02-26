@@ -1,12 +1,20 @@
 import React, { use } from 'react'
 import {Link, useNavigate} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import {logout} from "../app/features/authSlice"
 
 const Navbar = () => {
-    const user = {name: "John Doe"}; // Example user object; replace with actual authentication logic
-    const navigate = useNavigate();
+  
+  const {user} = useSelector(state => state.auth)
+  const dispatch = useDispatch()
+  
+  const navigate = useNavigate();
     const logoutUser = () => {
         // Implement logout logic here
         navigate("/")
+        dispatch(logout())
+        
+
     }
 
   return (
