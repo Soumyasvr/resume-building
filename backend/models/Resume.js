@@ -15,7 +15,7 @@ const ResumeSchema = new mongoose.Schema({
         email: {type: String, default: ""},
         phone: {type: String, default: ""},
         location: {type: String, default: ""},
-        linkedIn: {type: String, default: ""},
+        linkedin: {type: String, default: ""},
         website: {type: String, default: ""},
     },
     experience: [{

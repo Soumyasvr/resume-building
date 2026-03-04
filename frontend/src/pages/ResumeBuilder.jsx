@@ -177,7 +177,8 @@ const ResumeBuilder = () => {
                     data={resumeData.personal_info} 
                     onChange={(data) => setResumeData(prev => ({...prev, personal_info: data}))} 
                     removeBackground={removeBackground} 
-                    setRemoveBackground={setRemoveBackground}/>
+                    setRemoveBackground={setRemoveBackground} 
+                    accentColor={resumeData.accent_color}/>
                   )}
 
                   {activeSection.id === "summary" && (

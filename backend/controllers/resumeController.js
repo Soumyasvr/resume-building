@@ -49,7 +49,7 @@ export const getResumeById = async (req, res) => {
         if(!resume){
             return res.status(404).json({message: "Resume not found"});
         } 
-        resume._v = undefined; // hide version key in response
+        resume.__v = undefined; // hide version key in response
         resume.createdAt = undefined; // hide createdAt key in response
         resume.updatedAt = undefined; // hide updatedAt key in response
         // return success response  
@@ -84,14 +84,17 @@ export const updateResume = async (req, res) => {
         const {resumeId, resumeData, removeBackground} = req.body;
         const image = req.file;
 
+        console.log("FILE:", req.file);
+        console.log("BODY:", req.body);
 
-        let resumeDataCopy; 
 
-        if(typeof resumeData === "string"){
-            resumeDataCopy = JSON.parse(resumeData);
-        }else{
-            resumeDataCopy = structuredClone(resumeData);
-        }
+        let resumeDataCopy = JSON.parse(resumeData);
+
+        // if(typeof resumeData === "string"){
+        //     resumeDataCopy = JSON.parse(resumeData);
+        // }else{
+        //     resumeDataCopy = structuredClone(resumeData);
+        // }
 
         if(image){
 
@@ -102,7 +105,7 @@ export const updateResume = async (req, res) => {
                             fileName: "resume.png",
                             folder: "user-resumes",
                             transformation: {
-                                pre: "w-300, h-300, fo-face,z-0.75" + (removeBackground ? ",e-bgremove" : "")
+                                pre: "w-300,h-300,fo-face,z-0.75" + (removeBackground ? ",e-bgremove" : "")
                             }
                             });
               resumeDataCopy.personal_info.image = response.url;              
@@ -112,7 +115,9 @@ export const updateResume = async (req, res) => {
             userId,
             _id: resumeId
         }, resumeDataCopy, {new: true});
-        return res.status(200).json({message: "Resume updated successfully", resume});
+        
+        return res.status(200).json({message: "Saved successfully", resume});
+        
     } catch (error) {
         return res.status(500).json({message: "Error updating resume", error: error.message});
     }
