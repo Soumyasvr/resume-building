@@ -13,7 +13,7 @@ export const enhaceProfessionalSummary = async (req, res) => {
         }
 
         const response = await ai.chat.completions.create({
-            model: process.env.OPENAI_MODEL_NAME,
+            model: "gemini-2.5-flash",
             messages: [
                 {   role: "system",
                     content: "You are an export in resume writing. Your task is to enhance the professional summary should be 1-2 sentences also highlighting key skills, experience, and career objectives. Make it compelling and ATS-frinedly, and only return text no options or anything else." 
@@ -43,7 +43,7 @@ export const enhanceJobDescription = async (req, res) => {
         }
 
         const response = await ai.chat.completions.create({
-            model: process.env.OPENAI_MODEL_NAME,
+            model: "gemini-2.5-flash",
             messages: [
                 {   role: "system",
                     content: "You are an export in resume writing. Your task is to enhance the job description should be 1-2 sentences also highlighting key responsibilities, and achievements. Use action verbs and quantifiable results where possible. Make it compelling and ATS-frinedly, and only return text no options or anything else." 
@@ -57,7 +57,7 @@ export const enhanceJobDescription = async (req, res) => {
         const enhancedContent = response.choices[0].message.content;
         return res.status(200).json({enhancedContent});
     } catch (error) {
-        res.status(500).json({message: "Error enhancing professional summary", error: error.message});
+        res.status(500).json({message: "Error enhancing job description", error: error.message});
     }
 }
 
