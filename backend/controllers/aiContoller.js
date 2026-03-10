@@ -8,9 +8,7 @@ export const enhaceProfessionalSummary = async (req, res) => {
     try {
         const {userContent} = req.body;
 
-        if(!userContent){
-            return res.status(400).json({message: "Content is required"});
-        }
+        
 
         const response = await ai.chat.completions.create({
             model: "gemini-2.5-flash",
@@ -27,6 +25,9 @@ export const enhaceProfessionalSummary = async (req, res) => {
         const enhancedContent = response.choices[0].message.content;
         return res.status(200).json({enhancedContent});
     } catch (error) {
+        console.log("FULL ERROR:", error);
+        console.log("ERROR MESSAGE:", error.message);
+        console.log("ERROR RESPONSE:", error.response?.data);
         res.status(500).json({message: "Error enhancing professional summary", error: error.message});
     }
 }
@@ -38,9 +39,7 @@ export const enhanceJobDescription = async (req, res) => {
     try {
         const {userContent} = req.body;
 
-        if(!userContent){
-            return res.status(400).json({message: "Content is required"});
-        }
+        
 
         const response = await ai.chat.completions.create({
             model: "gemini-2.5-flash",
@@ -57,6 +56,9 @@ export const enhanceJobDescription = async (req, res) => {
         const enhancedContent = response.choices[0].message.content;
         return res.status(200).json({enhancedContent});
     } catch (error) {
+        console.log("FULL ERROR:", error);
+        console.log("ERROR MESSAGE:", error.message);
+        console.log("ERROR RESPONSE:", error.response?.data);
         res.status(500).json({message: "Error enhancing job description", error: error.message});
     }
 }
