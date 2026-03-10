@@ -117,7 +117,7 @@ export const uploadResume = async (req, res) => {
         `;
 
         const response = await ai.chat.completions.create({
-            model: process.env.OPENAI_MODEL,
+            model: "gemini-2.5-flash",
             messages: [
                 {   role: "system",
                     content: systemPrompt
